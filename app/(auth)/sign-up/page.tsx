@@ -53,9 +53,9 @@ const SignUp = () => {
 
 
             <SelectFeild 
-              name="investementGoals"
+              name="investmentGoals"
               label="Investment Goals"
-              placeholder="Select your inverstment goal"
+              placeholder="Select your investment goal"
               options={INVESTMENT_GOALS}
               control={control}
               error={errors.investmentGoals}
