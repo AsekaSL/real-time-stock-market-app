@@ -44,9 +44,9 @@ const SignUp = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
             {/* Inputs */}
-            <InputFeild name="Full Name" label="Full Name" placeholder="John Doe" register={register} error={errors.fullName} validation={{required: 'Full Name is required', minLength: 2}} />
-            <InputFeild name="Email" label="Email" placeholder="user@example.com" register={register} error={errors.fullName} validation={{required: 'Email address is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }} />
-            <InputFeild name="Password" type='password' label="Password" placeholder="Enter a strong password" register={register} error={errors.fullName} validation={{required: 'Full Name is required', minLength: 8}} />
+            <InputFeild name="fullName" label="Full Name" placeholder="John Doe" register={register} error={errors.fullName} validation={{required: 'Full Name is required', minLength: 2}} />
+            <InputFeild name="email" label="Email" placeholder="user@example.com" register={register} error={errors.email} validation={{required: 'Email address is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }} />
+            <InputFeild name="password" type='password' label="Password" placeholder="Enter a strong password" register={register} error={errors.password} validation={{required: 'Password is required', minLength: 8}} />
 
             {/* CountyGoal */}
             <CountrySelectField name='country' label='Country' control={control} error={errors.country} required />
