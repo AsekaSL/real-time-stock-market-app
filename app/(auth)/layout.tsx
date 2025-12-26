@@ -5,9 +5,17 @@ import React from "react"
 import logo from '@/public/assets/icons/logo.svg'
 import star from '@/public/assets/icons/star.svg'
 import dashboard from '@/public/assets/images/dashboard.png'
+import { headers } from "next/headers"
+import { auth } from "@/lib/better-auth/auth"
+import { redirect } from "next/navigation"
 
 
-const layout = ({children} : {children: React.ReactNode}) => {
+const layout = async ({children} : {children: React.ReactNode}) => {
+
+    const session = await auth.api.getSession({headers: await headers()})
+
+    if(session?.user) redirect('/')
+
   return (
     <main className="auth-layout">
         <section className="auth-left-section scrollbar-hide-default">

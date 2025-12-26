@@ -3,11 +3,16 @@
 import FooterLink from "@/components/forms/FooterLink"
 import InputFeild from "@/components/forms/InputFeild"
 import { Button } from "@/components/ui/button"
+import { signInWithEmail } from "@/lib/actions/auth.actions"
+import { useRouter } from "next/navigation"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 
 
 const SignIn = () => {
+
+    const router = useRouter();
 
     const {
         register,
@@ -27,13 +32,17 @@ const SignIn = () => {
         }, mode: 'onBlur'
       })
     
-      const onSubmit: SubmitHandler<SignUpFormData> = async (data: SignUpFormData) => {
+      const onSubmit = async (data: SignInFormData) => {
         try {
             console.log(data)
+            const result = await signInWithEmail(data);
+            console.log(result)
+            if(result.success) router.push('/')
         } catch (error) {
             console.error(error)
+            toast.error('Sign-in failed', {description: error instanceof Error ? error.message: 'Failed to Sign in'})
         }
-      }
+    }
 
  return(
     <>
@@ -43,8 +52,8 @@ const SignIn = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
             {/* Inputs */}
-            <InputFeild name="Email" label="Email" placeholder="user@example.com" register={register} error={errors.fullName} validation={{required: 'Email address is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }} />
-            <InputFeild name="Password" type='password' label="Password" placeholder="Enter your password" register={register} error={errors.fullName} validation={{required: 'Full Name is required', minLength: 8}} />
+            <InputFeild name="email" type="email" label="email" placeholder="user@example.com" register={register} error={errors.email} validation={{required: 'Email address is required', pattern: /^\w+@\w+\.\w+$/, message: 'Email address is required' }} />
+            <InputFeild name="password" type='password' label="password" placeholder="Enter your password" register={register} error={errors.password} validation={{required: 'Password is required', minLength: 8}} />
 
 
             <Button type='submit' disabled={isSubmitting} className='yellow-btn w-full mt-5'>
