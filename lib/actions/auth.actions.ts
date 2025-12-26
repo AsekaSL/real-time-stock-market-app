@@ -54,3 +54,4 @@ export const signInWithEmail = async ({email, password}: SignInFormData) => {
         return {success: false, error: 'Sign in failed'}
     }
 }
+
