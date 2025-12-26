@@ -28,7 +28,7 @@ declare global {
         placeholder: string;
         type?: string;
         register: UseFormRegister;
-        error?: FieldError;
+        error: FieldError;
         validation?: RegisterOptions;
         disabled?: boolean;
         value?: string;
